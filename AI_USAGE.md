@@ -91,7 +91,7 @@ In our proposal we planned to use AI mainly to debug, explain errors, and help c
   - 187 counties with no published asthma value in Kentucky and Pennsylvania.
   - One county with a suppressed asthma value.
 - Ran all 16 validation checks against the real data; all passed.
-- Fresh-copy rebuild test: [Add the result of cloning the repository into a new folder and running `python run_pipeline.py`. If this test was not completed, state that explicitly.]
+- Fresh-copy rebuild test (cloning the repo to a new folder and running `python run_pipeline.py`): passed. It re-downloaded all five files, produced the same row counts as my original build, and passed 16 of 16 validation checks.
 
 #### Files affected
 
