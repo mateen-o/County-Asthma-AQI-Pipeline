@@ -1,0 +1,14 @@
+# One shared environment so all three of us run the same package versions
+name: asthma-air-quality
+channels:
+  - conda-forge
+  # Your conda also searched Anaconda's "defaults" channel; this keeps everyone on conda-forge only
+  - nodefaults
+dependencies:
+  # Exact versions from the first install, so teammates get an identical setup
+  - python=3.12.16
+  # Reads the CSVs, reshapes them, and writes them into SQLite
+  - pandas=3.1.1
+  # Downloads the CDC and EPA files from inside the script, so nobody has to download by hand
+  - requests=2.34.2
+  # No database driver is needed: SQLite comes built into Python

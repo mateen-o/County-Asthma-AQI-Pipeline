@@ -1,0 +1,5 @@
+# Raw downloads are rebuilt by the download script, so they don't belong in git
+data/raw/
+# The database is rebuilt by the pipeline, so teammates run the pipeline instead of downloading a copy
+data/*.db
+__pycache__/
