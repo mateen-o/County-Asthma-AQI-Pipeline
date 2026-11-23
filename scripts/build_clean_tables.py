@@ -8,10 +8,10 @@ from database_connection import get_database_connection
 project_root_folder = Path(__file__).resolve().parent.parent
 
 # SQL files run in this order, because later files build on tables made by earlier ones
-sql_files_to_run = [project_root_folder / "sql" / "02_create_clean_tables.sql", project_root_folder / "sql" / "03_create_analysis_table.sql"]
+sql_files_to_run = [project_root_folder / "sql" / "02_create_clean_tables.sql", project_root_folder / "sql" / "03_create_analysis_table.sql", project_root_folder / "sql" / "04_add_saipe_poverty.sql"]
 
 # Tables to count afterwards, so a step that quietly produced too few rows is easy to spot
-tables_to_count = ["counties", "places_county_measures", "epa_county_fips_lookup", "epa_annual_aqi_by_county", "county_asthma_air_quality"]
+tables_to_count = ["counties", "places_county_measures", "epa_county_fips_lookup", "epa_annual_aqi_by_county", "saipe_county_poverty_income", "county_asthma_air_quality"]
 
 def main():
     database_connection = get_database_connection()

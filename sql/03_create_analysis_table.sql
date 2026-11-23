@@ -31,7 +31,7 @@ CREATE TABLE county_asthma_air_quality (
     -- Other county measures for the regression (all age-adjusted, to match asthma)
     smoking_age_adjusted_percent                   REAL,
     obesity_age_adjusted_percent                   REAL,
-    no_health_insurance_age_adjusted_percent       REAL,  -- adults 18-64; stands in for income, since poverty isn't in the PLACES county file
+    no_health_insurance_age_adjusted_percent       REAL,  -- Kept as a measure of access to care; poverty and income now come from Census SAIPE (added in 04_add_saipe_poverty.sql)
     physical_inactivity_age_adjusted_percent       REAL,
     -- Air quality for this county and year, and why it might be empty
     air_quality_coverage                           TEXT NOT NULL CHECK (air_quality_coverage IN ('monitored', 'not monitored', 'not comparable (Connecticut boundary change)')),

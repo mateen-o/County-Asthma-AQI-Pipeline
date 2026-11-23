@@ -42,6 +42,17 @@ validation_checks = [
      "SELECT COUNT(*) FROM county_asthma_air_quality WHERE (state_abbreviation = 'CT') <> (air_quality_coverage = 'not comparable (Connecticut boundary change)')"),
     ("Every EPA county outside Connecticut shows up as 'monitored' in the analysis table",
      "SELECT ABS((SELECT COUNT(*) FROM epa_annual_aqi_by_county WHERE substr(county_fips, 1, 2) <> '09') - (SELECT COUNT(*) FROM county_asthma_air_quality WHERE air_quality_coverage = 'monitored'))"),
+         # SAIPE checks: the first two confirm cleaning lost or mangled nothing; the next two confirm every county matched in both directions
+    ("Every SAIPE county row in the raw table made it into the clean SAIPE table", "SELECT ABS((SELECT COUNT(*) FROM raw_saipe_county WHERE CAST(county_fips_code AS INTEGER) <> 0) - (SELECT COUNT(*) FROM saipe_county_poverty_income))"),
+    ("Every county code in the clean SAIPE table is exactly 5 digits", "SELECT COUNT(*) FROM saipe_county_poverty_income WHERE length(county_fips) <> 5 OR county_fips GLOB '*[^0-9]*'"),
+     ("Every county except Kalawao, HI has SAIPE poverty and income", "SELECT COUNT(*) FROM county_asthma_air_quality WHERE (poverty_percent_all_ages IS NULL OR median_household_income IS NULL) AND county_fips <> '15005'"),
+    ("Every SAIPE county is in the analysis table", "SELECT COUNT(*) FROM saipe_county_poverty_income WHERE county_fips NOT IN (SELECT county_fips FROM county_asthma_air_quality)"),
+    # Range checks catch values that were read wrong, such as a percent landing in the income column
+    ("Poverty percent is between 0 and 100", "SELECT COUNT(*) FROM saipe_county_poverty_income WHERE poverty_percent_all_ages < 0 OR poverty_percent_all_ages > 100"),
+    ("Median household income is above zero", "SELECT COUNT(*) FROM saipe_county_poverty_income WHERE median_household_income <= 0"),
+    # "90% CI Lower Bound" repeats ten times in the file, so this catches a bound matched to the wrong estimate
+    ("Each SAIPE estimate sits inside its own 90% interval", "SELECT COUNT(*) FROM saipe_county_poverty_income WHERE poverty_percent_all_ages NOT BETWEEN poverty_percent_all_ages_lower_90 AND poverty_percent_all_ages_upper_90 OR median_household_income NOT BETWEEN median_household_income_lower_90 AND median_household_income_upper_90"),
+
 ]
 
 
