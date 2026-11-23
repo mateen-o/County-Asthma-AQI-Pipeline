@@ -11,4 +11,6 @@ dependencies:
   - pandas=3.1.1
   # Downloads the CDC and EPA files from inside the script, so nobody has to download by hand
   - requests=2.34.2
-  # No database driver is needed: SQLite comes built into Python
+  # No database driver is needed: SQLite is built into Python
+  # Reads Excel files, including the old .xls format SAIPE uses; pandas is phasing out xlrd, so calamine keeps the pipeline working after pandas updates
+  - python-calamine

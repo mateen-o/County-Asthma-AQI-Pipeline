@@ -70,3 +70,40 @@ CREATE TABLE raw_epa_daily_aqi_by_county (
     number_of_sites_reporting  TEXT,
     source_file_name           TEXT
 ) STRICT;
+
+-- Census SAIPE 2023 state and county file, every value stored as text exactly as published
+-- The file repeats "90% CI Lower Bound" and "90% CI Upper Bound", so each bound is named after the estimate it belongs to
+CREATE TABLE raw_saipe_county (
+    state_fips_code                                 TEXT,
+    county_fips_code                                TEXT,
+    postal_code                                     TEXT,
+    area_name                                       TEXT,
+    poverty_count_all_ages                          TEXT,
+    poverty_count_all_ages_lower_90                 TEXT,
+    poverty_count_all_ages_upper_90                 TEXT,
+    poverty_percent_all_ages                        TEXT,
+    poverty_percent_all_ages_lower_90               TEXT,
+    poverty_percent_all_ages_upper_90               TEXT,
+    poverty_count_age_0_17                          TEXT,
+    poverty_count_age_0_17_lower_90                 TEXT,
+    poverty_count_age_0_17_upper_90                 TEXT,
+    poverty_percent_age_0_17                        TEXT,
+    poverty_percent_age_0_17_lower_90               TEXT,
+    poverty_percent_age_0_17_upper_90               TEXT,
+    poverty_count_age_5_17_in_families              TEXT,
+    poverty_count_age_5_17_in_families_lower_90     TEXT,
+    poverty_count_age_5_17_in_families_upper_90     TEXT,
+    poverty_percent_age_5_17_in_families            TEXT,
+    poverty_percent_age_5_17_in_families_lower_90   TEXT,
+    poverty_percent_age_5_17_in_families_upper_90   TEXT,
+    median_household_income                         TEXT,
+    median_household_income_lower_90                TEXT,
+    median_household_income_upper_90                TEXT,
+    poverty_count_age_0_4                           TEXT,
+    poverty_count_age_0_4_lower_90                  TEXT,
+    poverty_count_age_0_4_upper_90                  TEXT,
+    poverty_percent_age_0_4                         TEXT,
+    poverty_percent_age_0_4_lower_90                TEXT,
+    poverty_percent_age_0_4_upper_90                TEXT,
+    source_file_name                                TEXT
+) STRICT;

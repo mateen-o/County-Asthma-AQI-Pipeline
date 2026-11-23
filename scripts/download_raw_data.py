@@ -19,6 +19,9 @@ files_to_download = {
     "annual_aqi_by_county_2022.zip": "https://aqs.epa.gov/aqsweb/airdata/annual_aqi_by_county_2022.zip",
     "daily_aqi_by_county_2023.zip": "https://aqs.epa.gov/aqsweb/airdata/daily_aqi_by_county_2023.zip",
     "daily_aqi_by_county_2022.zip": "https://aqs.epa.gov/aqsweb/airdata/daily_aqi_by_county_2022.zip",
+    #Note: the 2023 SAIPE file is in Excel format, not CSV, so we need to use a different reader for it later 
+    # Census SAIPE 2023: county poverty rate and median household income, same year as the asthma survey; one file covers every state and county
+    "saipe_2023_state_and_county.xls": "https://www2.census.gov/programs-surveys/saipe/datasets/2023/2023-state-and-county/est23all.xls",
 }
 
 
