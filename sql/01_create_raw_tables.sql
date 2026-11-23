@@ -73,6 +73,8 @@ CREATE TABLE raw_epa_daily_aqi_by_county (
 
 -- Census SAIPE 2023 state and county file, every value stored as text exactly as published
 -- The file repeats "90% CI Lower Bound" and "90% CI Upper Bound", so each bound is named after the estimate it belongs to
+-- Drop first so the loader can be rerun; without this, every run after the first stops with "table raw_saipe_county already exists"
+DROP TABLE IF EXISTS raw_saipe_county;
 CREATE TABLE raw_saipe_county (
     state_fips_code                                 TEXT,
     county_fips_code                                TEXT,
